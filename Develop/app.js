@@ -9,6 +9,57 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { doesNotMatch } = require("assert");
+
+
+
+const newEmployee = []
+
+const getPosition = [{
+    type: "list",
+    name: "role"
+    message: "which employee would you like to add",
+    choices: [
+        "Intern",
+        "Manager", 
+        "Engineer",
+        "Done"
+    ]
+
+}];
+
+function promptQuestion(){
+    inquirer.prompt(getPosition).then(answers => {
+        console.log(answers)
+        switch (answers.role){
+            case "Manager":
+                return newManager();
+                break;
+
+            case "Intern":
+                return newIntern();
+                break;
+
+            case "Engineer":
+                return newEngineer();
+                break;
+
+            case "Done":
+                return imDone();
+                break;
+
+        }
+
+    });
+};
+promptQuestion();
+
+
+
+
+
+
+
 
 
 // Write code to use inquirer to gather information about the development team members,
