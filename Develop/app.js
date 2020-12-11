@@ -9,7 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const { doesNotMatch } = require("assert");
+
 
 
 
@@ -17,7 +17,7 @@ const newEmployee = []
 
 const getPosition = [{
     type: "list",
-    name: "role"
+    name: "role",
     message: "which employee would you like to add",
     choices: [
         "Intern",
@@ -162,3 +162,22 @@ function newManager() {
         promptQuestion();
     })
 };
+
+function imDone() {
+    renderHTML();
+    console.log(newEmployee)
+    
+}
+
+
+function renderHTML(){
+fs.writeFile(outputPath, render(newEmployee), function(err, data) {
+
+    if (err) {
+      return console.log(err);
+    }
+  
+    console.log("Success!");
+  
+  })};
+
